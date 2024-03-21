@@ -14,87 +14,98 @@ const FormInput = () => {
             dateOfBirth => ${dateOfBirth}
             password => ${password}
             confirmPassword => ${confirmPassword}
-        `)
+        `);
 
-        setUsername('') 
-        setEmail('')
-        setDateOfBirth('')
-        setPassword('')
-        setConfirmPassword('')
-  }
+    setUsername('');
+    setEmail('');
+    setDateOfBirth('');
+    setPassword('');
+    setConfirmPassword('');
+  };
 
   return (
-    <form className='formBody' onSubmit={submitHandler}>
-      <div className="formInput">
-        <label htmlFor="username">Username</label>
-        <br />
-        <input
-          type="text"
-          id="username"
-          name="username"
-          placeholder="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-      </div>
-      <br />
+    <>
+      <form onSubmit={submitHandler}>
+        <div className="formInput">
+          <label htmlFor="username">Username</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+            pattern="^[a-zA-Z0-9_]+$"
+          />
+          <span>
+            username should be 3-16 charachters and should not lnclude any
+            special charachter
+          </span>
+        </div>
 
-      <div className="formInput">
-        <label htmlFor="email">Email</label>
-        <br />
-        <input
-          type="email"
-          id="email"
-          placeholder="email"
-          name="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </div>
-      <br />
+        <div className="formInput">
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            placeholder="email"
+            name="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z]{2,}"
+          />
+          <span>it should be a valid email address</span>
+        </div>
 
-      <div className="formInput">
-        <label htmlFor="dateOfBirth">Date of Birth:</label>
-        <br />
-        <input 
-            type="date" 
-            id="dateOfBirth" 
+        <div className="formInput">
+          <label htmlFor="dateOfBirth">Date of Birth:</label>
+          <input
+            type="date"
+            id="dateOfBirth"
             name="dateOfBirth"
-            value={dateOfBirth} 
+            value={dateOfBirth}
             onChange={(e) => setDateOfBirth(e.target.value)}
-        />
-      </div>
-      <br />
+          />
+        </div>
 
-      <div className="formInput">
-        <label htmlFor="pessword">Password: </label>
-        <br />
-        <input 
-            type="password" 
-            id="password" 
-            placeholder='password'
+        <div className="formInput">
+          <label htmlFor="pessword">Password: </label>
+          <input
+            type="password"
+            id="password"
+            placeholder="password"
             name="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-        />
-      </div>
-      <br />
+            required
+            pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^\da-zA-Z]).{8,}$"
+          />
+          <span>
+            password should be 8-20 characters and include at least 1 letter, 1
+            number and 1 special character
+          </span>
+        </div>
 
-      <div className="formInput">
-        <label htmlFor="confirmPassword">Confirm Password:</label>
-        <br />
-        <input 
-            type="password" 
-            id='confirmPassword'
-            placeholder='confirm passwordd'
-            name='confirmPassword'
+        <div className="formInput">
+          <label htmlFor="confirmPassword">Confirm Password:</label>
+
+          <input
+            type="password"
+            id="confirmPassword"
+            placeholder="confirm passwordd"
+            name="confirmPassword"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
-        />
-      </div>
-      <br />
-      <button type="submit">Sign Up</button>
-    </form>
+            required
+          />
+          <span>password do not match</span>
+        </div>
+
+        <button type="submit">Sign Up</button>
+      </form>
+    </>
   );
 };
 
